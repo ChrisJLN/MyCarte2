@@ -7,6 +7,8 @@ import android.util.Log;
 import android.content.Context;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 import com.example.mycarte.R;
 import com.example.mycarte.Utils.BottomNavigationViewHelper;
@@ -22,11 +24,31 @@ public class ProfileActivity extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_profile);
         Log.d(TAG, "onCreate: started.");
         setupBottomNavigationView();
+        setupToolbar();
     }
 
+    private void setupToolbar()
+    {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.profileToolBar);
+        setSupportActionBar(toolbar);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener()
+        {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Log.d(TAG, "onMenuItemClick: clicked menu item: " + item);
+                switch (item.getItemId())
+                {
+                    R.id.profileMenu:
+                    Log.d(TAG, "onMenuItemClick: Navigating to Profile Preferences.");
+                }
+                return false;
+            }
+        });
+    }
     /**
      * Bottom NavigationView Setup
      */
@@ -39,5 +61,12 @@ public class ProfileActivity extends AppCompatActivity
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.profile_menu, menu);
+        return true;
     }
 }
