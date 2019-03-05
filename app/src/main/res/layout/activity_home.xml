@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home.HomePageActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        //Toolbar du haut
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            android:ids"@+id/relLayout1">
+
+            <include layout="@layout/layout_top"/>
+
+        </RelativeLayout>
+
+        //Feed du Milieu
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            android:ids"@+id/relLayout2"
+            android:layout_below="@+id/relLayout1>
+            <include layout="@layout/layout_center"/>
+
+        </RelativeLayout>
+
+        //Bar de Navigation du bas
+        <include layout="@layout/layout_bottom"/>
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
