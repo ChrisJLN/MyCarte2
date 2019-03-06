@@ -1,14 +1,13 @@
 package com.example.mycarte.Profile;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.content.Context;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toolbar;
-import android.support.v7.widget.Toolbar;
+//import android.widget.Toolbar;
 
 import com.example.mycarte.R;
 import com.example.mycarte.Utils.BottomNavigationViewHelper;
@@ -18,31 +17,33 @@ public class ProfileActivity extends AppCompatActivity
 {
     private static final String TAG = "ProfileActivity";
     private static final int ACTIVITY_NUM = 2;
+
     private Context mContext = ProfileActivity.this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_home);
         Log.d(TAG, "onCreate: started.");
         setupBottomNavigationView();
-        setupToolbar();
+        //setupToolbar();
     }
 
-    private void setupToolbar()
+    /**private void setupToolbar()
     {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.profileToolBar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.profileToolBar);
         setSupportActionBar(toolbar);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener()
         {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
+            public boolean onMenuItemClick(MenuItem item)
+            {
                 Log.d(TAG, "onMenuItemClick: clicked menu item: " + item);
                 switch (item.getItemId())
                 {
-                    R.id.profileMenu:
+                    case R.id.profileMenu:
                     Log.d(TAG, "onMenuItemClick: Navigating to Profile Preferences.");
                 }
                 return false;

@@ -40,4 +40,5 @@ public class LikesActivity extends AppCompatActivity
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
     }
+    //fdsfsfds
 }
