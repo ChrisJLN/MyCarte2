@@ -29,6 +29,7 @@ public class BottomNavigationViewHelper
         
     }
 
+    //ACTIVITY_NUM starts at 0 from left to right
     public static void enableNavigation(final Context context, BottomNavigationViewEx view)
     {
         view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
