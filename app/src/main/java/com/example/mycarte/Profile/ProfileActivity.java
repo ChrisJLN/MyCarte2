@@ -64,10 +64,4 @@ public class ProfileActivity extends AppCompatActivity
         menuItem.setChecked(true);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.profile_menu, menu);
-        return true;
-    }
 }
