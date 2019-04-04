@@ -1,11 +1,10 @@
 package com.example.mycarte.Profile;
 
-import android.nfc.Tag;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-public class AccountSettingsActivity extends AppCompatActivity
+/*public class AccountSettingsActivity extends AppCompatActivity
 {
     private static final String TAG = "AccountSettingsActivity";
     @Override
@@ -16,3 +15,4 @@ public class AccountSettingsActivity extends AppCompatActivity
         Log.d(TAG, "onCreate: started.");
     }
 }
+*/
