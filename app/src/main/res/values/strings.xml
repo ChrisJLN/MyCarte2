@@ -2,4 +2,7 @@
     <string name="app_name">MyCarte</string>
     <string name="title_activity_maps">Map</string>
     <string name="string_open_camera">Open Camera</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="sign_out">Sign Out</string>
+
 </resources>

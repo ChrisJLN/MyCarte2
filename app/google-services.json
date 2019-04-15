@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1092394471065:android:28c14d7a82c3c384",
+        "mobilesdk_app_id": "1:1092394471065:android:c0e44d72a2bd7bbf",
         "android_client_info": {
-          "package_name": "om.example.mycarte"
+          "package_name": "com.example.mycarte"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1092394471065-1g1iahinp82ofk6i0c7pfjgjcm11sbel.apps.googleusercontent.com",
+          "client_id": "1092394471065-h2ualch364ru11ree55a3m99sm8e4s4d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "om.example.mycarte",
+            "package_name": "com.example.mycarte",
             "certificate_hash": "9f0284575cc0b9e397afc4b99156077d82c5955f"
           }
         }

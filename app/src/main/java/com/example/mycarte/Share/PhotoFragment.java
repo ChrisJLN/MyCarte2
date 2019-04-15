@@ -1,4 +1,4 @@
-package com.example.mycarte.Share;
+/*package com.example.mycarte.Share;
 
 
 import android.os.Bundle;
@@ -26,3 +26,4 @@ public class PhotoFragment extends Fragment
         return view;
     }
 }
+*/

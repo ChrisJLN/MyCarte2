@@ -21,4 +21,5 @@ public class CameraFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_camera, container, false);
         return view;
     }
+
 }
