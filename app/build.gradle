@@ -47,6 +47,10 @@ dependencies {
     //Firebase
     implementation 'com.google.firebase:firebase-core:16.0.8'
 
+    //Universal Image Loader
+
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
 }
 
 

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.example.mycarte.R;
 import com.example.mycarte.Utils.BottomNavigationViewHelper;
+import com.example.mycarte.Utils.SectionsPagerAdapter;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class HomePageActivity extends AppCompatActivity

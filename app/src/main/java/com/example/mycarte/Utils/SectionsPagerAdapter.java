@@ -1,4 +1,4 @@
-package com.example.mycarte.Home;
+package com.example.mycarte.Utils;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
