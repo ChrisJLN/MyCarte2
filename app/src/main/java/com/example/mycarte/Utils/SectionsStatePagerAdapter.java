@@ -19,7 +19,6 @@ public class SectionsStatePagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
     }
 
-
     @Override
     public Fragment getItem(int position) {
         return mFragmentlist.get(position);

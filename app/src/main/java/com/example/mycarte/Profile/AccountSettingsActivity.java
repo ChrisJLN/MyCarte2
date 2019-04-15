@@ -29,12 +29,14 @@ public class AccountSettingsActivity extends AppCompatActivity {
     private SectionsStatePagerAdapter pagerAdapter;
     private ViewPager mViewPager;
     private RelativeLayout mRelativeLayout;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accountsettings);
         mContext = AccountSettingsActivity.this;
         Log.d(TAG, "onCreate: started.");
+
         mViewPager = (ViewPager) findViewById(R.id.container);
         mRelativeLayout = (RelativeLayout) findViewById(R.id.relLayout1);
 
@@ -57,15 +59,13 @@ public class AccountSettingsActivity extends AppCompatActivity {
         pagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(new EditProfileFragment(), getString(R.string.edit_profile_fragment)); //fragment 0
         pagerAdapter.addFragment(new SignOutFragment(), getString(R.string.sign_out_fragment)); //fragment 1
-
     }
 
     private void setViewPager(int fragmentNumber){
         mRelativeLayout.setVisibility(View.GONE);
-        Log.d(TAG, "setViewPager: navigating to fragment #: " + fragmentNumber);
+        Log.d(TAG,  "setViewPager: navigating to fragment #: " + fragmentNumber);
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setCurrentItem(fragmentNumber);
-
     }
     private void setupSettingsList(){
         Log.d(TAG, "setupSettingsList: initializing 'Account Settings' list.");
