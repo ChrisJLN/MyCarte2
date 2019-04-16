@@ -10,18 +10,27 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.example.mycarte.R;
 import com.example.mycarte.Utils.BottomNavigationViewHelper;
+import com.example.mycarte.Utils.GridImageAdapter;
+import com.example.mycarte.Utils.UniversalImageLoader;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+
+import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity{
     private static final String TAG = "ProfileActivity";
     private static final int ACTIVITY_NUM = 4;
+    private static final int NUM_GRID_COLUMNS;
 
+    private ProgressBar mProgressBar;
     private Context mContext = ProfileActivity.this;
     private ImageView profilePhoto;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +40,38 @@ public class ProfileActivity extends AppCompatActivity{
         setupBottomNavigationView();
         setupToolbar();
         setupActivityWidgets();
+        setProfileImage();
+
+        tempGridSetup();
+    }
+
+    private void tempGridSetup(){
+        ArrayList<String> imgURLs = new ArrayList<>();
+        imgURLs.add("https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg");
+        imgURLs.add("https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg");
+        imgURLs.add("https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg");
+        imgURLs.add("https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg");
+        imgURLs.add("https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg");
+
+        setupImageGrid(imgURLs);
+    }
+
+
+
+    private void setupImageGrid(ArrayList<String> imgURL){
+        GridView gridView = (GridView) findViewById(R.id.gridView);
+        int gridWidth = getResources().getDisplayMetrics().widthPixels;
+        int imageWidth = gridWidth/NUM_GRID_COLUMNS;
+        gridView.setColumnWidth(imageWidth);
+        GridImageAdapter adapter = new GridImageAdapter(mContext, R.layout.layout_grid_imageview, "", imgURL);
+        gridView.setAdapter(adapter);
+
     }
 
     private void setProfileImage(){
-
+        Log.d(TAG,"setProfileImage: setting profile photo.");
+        String imgURL = "images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg";
+        UniversalImageLoader.setImage(imgURL, profilePhoto, mProgressBar, "https://");
     }
 
     private void setupActivityWidgets(){
