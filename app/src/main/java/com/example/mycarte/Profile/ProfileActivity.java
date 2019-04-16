@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class ProfileActivity extends AppCompatActivity{
     private static final String TAG = "ProfileActivity";
     private static final int ACTIVITY_NUM = 4;
-    private static final int NUM_GRID_COLUMNS;
+    private static final int NUM_GRID_COLUMNS = 3;
 
     private ProgressBar mProgressBar;
     private Context mContext = ProfileActivity.this;
@@ -47,11 +47,11 @@ public class ProfileActivity extends AppCompatActivity{
 
     private void tempGridSetup(){
         ArrayList<String> imgURLs = new ArrayList<>();
+        imgURLs.add("https://hcponline.org/wp-content/uploads/sites/67/2018/09/HCP-Levy-Park-1.jpg");
+        imgURLs.add("http://dailynous.com/wp-content/uploads/2017/05/stthomas-houston-campus-image-1.jpg");
         imgURLs.add("https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg");
-        imgURLs.add("https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg");
-        imgURLs.add("https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg");
-        imgURLs.add("https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg");
-        imgURLs.add("https://images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg");
+        imgURLs.add("https://i.redd.it/l2xzzwcokfpz.jpg");
+        imgURLs.add("https://i.redd.it/s52mc96vkmk21.jpg");
 
         setupImageGrid(imgURLs);
     }
@@ -63,6 +63,7 @@ public class ProfileActivity extends AppCompatActivity{
         int gridWidth = getResources().getDisplayMetrics().widthPixels;
         int imageWidth = gridWidth/NUM_GRID_COLUMNS;
         gridView.setColumnWidth(imageWidth);
+        
         GridImageAdapter adapter = new GridImageAdapter(mContext, R.layout.layout_grid_imageview, "", imgURL);
         gridView.setAdapter(adapter);
 
