@@ -1,6 +1,7 @@
 package com.example.mycarte.Home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.mycarte.Login.LoginActivity;
 import com.example.mycarte.R;
 import com.example.mycarte.Utils.BottomNavigationViewHelper;
 import com.example.mycarte.Utils.SectionsPagerAdapter;
@@ -88,6 +90,18 @@ public class HomePageActivity extends AppCompatActivity
         /*
     ---------------------------- Firebase --------------------------------------------
      */
+
+    /**
+     * checks to see if the @param 'user' is logged in
+     * @param user
+     */
+    private void checkCurrentUser(FirebaseUser user){
+            Log.d(TAG, "checkCurrentUser: checking if user is logged in.");
+            if (user == null){
+                Intent intent = new Intent(mContext, LoginActivity.class);
+                startActivity(intent);
+            }
+        }
     /**
      * Setup the firebase auth object
      */
@@ -98,6 +112,10 @@ public class HomePageActivity extends AppCompatActivity
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                //check if the user logged in
+                checkCurrentUser(user);
+
                 if(user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged: signed_in" + user.getUid());
@@ -116,6 +134,7 @@ public class HomePageActivity extends AppCompatActivity
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+        checkCurrentUser(mAuth.getCurrentUser());
     }
 
     @Override

@@ -50,7 +50,6 @@ dependencies {
 
     //Firebase Authentification
     implementation 'com.google.firebase:firebase-auth:16.2.1'
-
     //Firebase
     implementation 'com.google.firebase:firebase-core:16.0.8'
 
