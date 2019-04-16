@@ -8,6 +8,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,14 +18,16 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.example.mycarte.R;
+import com.example.mycarte.Utils.BottomNavigationViewHelper;
 import com.example.mycarte.Utils.SectionsStatePagerAdapter;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
 
 public class AccountSettingsActivity extends AppCompatActivity {
 
     private static final String TAG = "AccountSettingsActivity";
-
+    private static final int ACTIVITY_NUM = 4;
     private Context mContext;
 
     private SectionsStatePagerAdapter pagerAdapter;
@@ -40,7 +44,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         mRelativeLayout = (RelativeLayout) findViewById(R.id.relLayout1);
 
         setupSettingsList();
-
+        setupBottomNavigationView();
         setupFragment();
 
         //setup the backarrow for navigating back to "ProfileActivity"
@@ -84,5 +88,19 @@ public class AccountSettingsActivity extends AppCompatActivity {
                 setViewPager(position);
             }
         });
+    }
+
+    /**
+     * Bottom NavigationView Setup
+     */
+    private void setupBottomNavigationView()
+    {
+        Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
+        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
+        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationViewEx);
+        Menu menu = bottomNavigationViewEx.getMenu();
+        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+        menuItem.setChecked(true);
     }
 }

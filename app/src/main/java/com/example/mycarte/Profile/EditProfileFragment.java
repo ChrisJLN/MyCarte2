@@ -27,20 +27,25 @@ public class EditProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_editprofile, container, false);
         mProfilePhoto = (ImageView) view.findViewById(R.id.profile_photo);
 
-        initImageLoader();
 
         setProfileImage();
 
+        //back arrow for navigating back to "ProfileActivity"
+        ImageView backArrow = (ImageView) view.findViewById(R.id.backArrow);
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Log.d(TAG, "onClick:navigating back to Profile");
+            getActivity().finish();
+        }
+    });
         return view;
     }
 
-    private void initImageLoader(){
-        UniversalImageLoader universalImageLoader = new UniversalImageLoader(getActivity());
-        ImageLoader.getInstance().init(universalImageLoader.getConfig());
-    }
+
     private void setProfileImage(){
         Log.d(TAG, "setProfileImage: setting profile image");
-        String imgURL = "data:image/png;base64,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";
+        String imgURL = "images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg";
         UniversalImageLoader.setImage(imgURL, mProfilePhoto, null, "https://");
 
     }

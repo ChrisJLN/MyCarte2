@@ -21,17 +21,25 @@ public class ProfileActivity extends AppCompatActivity{
     private static final int ACTIVITY_NUM = 4;
 
     private Context mContext = ProfileActivity.this;
-
+    private ImageView profilePhoto;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Log.d(TAG, "onCreate: started.");
 
-        //setupBottomNavigationView();
+        setupBottomNavigationView();
         setupToolbar();
+        setupActivityWidgets();
     }
 
+    private void setProfileImage(){
+
+    }
+
+    private void setupActivityWidgets(){
+        profilePhoto = (ImageView) findViewById(R.id.profile_photo);
+    }
     private void setupToolbar()
     {
         Toolbar toolbar = (Toolbar) findViewById(R.id.profileToolBar);
