@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1092394471065:android:8854567765bf3018",
+        "android_client_info": {
+          "package_name": "com.example.dat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092394471065-sf6s322n2h3fr86b09so2inplv18rri2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABHPN6pUfs4CdQVtTWUnHb1ExfvBnRWic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092394471065-sf6s322n2h3fr86b09so2inplv18rri2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1092394471065:android:c0e44d72a2bd7bbf",
         "android_client_info": {
           "package_name": "com.example.mycarte"
@@ -21,6 +50,10 @@
             "package_name": "com.example.mycarte",
             "certificate_hash": "9f0284575cc0b9e397afc4b99156077d82c5955f"
           }
+        },
+        {
+          "client_id": "1092394471065-sf6s322n2h3fr86b09so2inplv18rri2.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
