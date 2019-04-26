@@ -1,5 +1,6 @@
 package com.example.mycarte.Profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mycarte.R;
+import com.example.mycarte.Share.ShareActivity;
 import com.example.mycarte.Utils.FirebaseMethods;
 import com.example.mycarte.Utils.StringManipulation;
 import com.example.mycarte.Utils.UniversalImageLoader;
@@ -277,7 +279,15 @@ public class EditProfileFragment extends Fragment implements
         mEmail.setText(userSettings.getUser().getEmail());
         mPhoneNumber.setText(String.valueOf(userSettings.getUser().getPhone_number()));
 
-
+        mChangeProfilePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: changing profile photo");
+                Intent intent = new Intent(getActivity(), ShareActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //268435456
+                getActivity().startActivity(intent);
+            }
+        });
     }
        /*
     ------------------------------------ Firebase ---------------------------------------------
