@@ -12,9 +12,6 @@
 
         <include layout="@layout/snippet_top_profile_bar"/>
 
-
-
-
     </RelativeLayout>
 
     <RelativeLayout

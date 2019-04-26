@@ -22,11 +22,9 @@ public class EditProfileFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_editprofile, container, false);
         mProfilePhoto = (ImageView) view.findViewById(R.id.profile_photo);
-
 
         setProfileImage();
 
@@ -35,18 +33,18 @@ public class EditProfileFragment extends Fragment {
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Log.d(TAG, "onClick:navigating back to Profile");
-            getActivity().finish();
-        }
-    });
+                Log.d(TAG, "onClick: navigating back to ProfileActivity");
+                getActivity().finish();
+            }
+        });
+
         return view;
     }
 
 
     private void setProfileImage(){
-        Log.d(TAG, "setProfileImage: setting profile image");
-        String imgURL = "images.idgesg.net/images/article/2017/08/android_robot_logo_by_ornecolorada_cc0_via_pixabay1904852_wide-100732483-large.jpg";
+        Log.d(TAG, "setProfileImage: setting profile image.");
+        String imgURL = "www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
         UniversalImageLoader.setImage(imgURL, mProfilePhoto, null, "https://");
-
     }
 }

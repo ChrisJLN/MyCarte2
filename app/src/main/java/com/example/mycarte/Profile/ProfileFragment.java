@@ -23,6 +23,10 @@ import android.widget.TextView;
 import com.example.mycarte.Login.LoginActivity;
 import com.example.mycarte.R;
 import com.example.mycarte.Utils.BottomNavigationViewHelper;
+import com.example.mycarte.Utils.FirebaseMethods;
+import com.example.mycarte.Utils.UniversalImageLoader;
+import com.example.mycarte.models.UserAccountSettings;
+import com.example.mycarte.models.UserSettings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,22 +42,26 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
 
     private static final String TAG = "ProfileFragment";
+
     private static final int ACTIVITY_NUM = 4;
+
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
+    private FirebaseMethods mFirebaseMethods;
 
-    private TextView mPost, mFollowers, mFollowing, mDisplayName, mUsername, mWebsite, mDescription;
+
+    private TextView mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mWebsite, mDescription;
     private ProgressBar mProgressBar;
     private CircleImageView mProfilePhoto;
     private GridView gridView;
     private Toolbar toolbar;
     private ImageView profileMenu;
     private BottomNavigationViewEx bottomNavigationView;
-
     private Context mContext;
+
 
     @Nullable
     @Override
@@ -64,7 +72,7 @@ public class ProfileFragment extends Fragment {
         mWebsite = (TextView) view.findViewById(R.id.website);
         mDescription = (TextView) view.findViewById(R.id.description);
         mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
-        mPost = (TextView) view.findViewById(R.id.tvPosts);
+        mPosts = (TextView) view.findViewById(R.id.tvPosts);
         mFollowers = (TextView) view.findViewById(R.id.tvFollowers);
         mFollowing = (TextView) view.findViewById(R.id.tvFollowing);
         mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
@@ -73,26 +81,51 @@ public class ProfileFragment extends Fragment {
         profileMenu = (ImageView) view.findViewById(R.id.profileMenu);
         bottomNavigationView = (BottomNavigationViewEx) view.findViewById(R.id.bottomNavViewBar);
         mContext = getActivity();
-        Log.d(TAG, "onCreateView: started.");
+        mFirebaseMethods = new FirebaseMethods(getActivity());
+        Log.d(TAG, "onCreateView: stared.");
+
 
         setupBottomNavigationView();
         setupToolbar();
+
+        setupFirebaseAuth();
+
         return view;
     }
+
+    private void setProfileWidgets(UserSettings userSettings){
+        Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.toString());
+        Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getSettings().getUsername());
+
+
+        //User user = userSettings.getUser();
+        UserAccountSettings settings = userSettings.getSettings();
+
+        UniversalImageLoader.setImage(settings.getProfile_photo(), mProfilePhoto, null, "");
+
+        mDisplayName.setText(settings.getDisplay_name());
+        mUsername.setText(settings.getUsername());
+        mWebsite.setText(settings.getWebsite());
+        mDescription.setText(settings.getDescription());
+        mPosts.setText(String.valueOf(settings.getPosts()));
+        mFollowing.setText(String.valueOf(settings.getFollowing()));
+        mFollowers.setText(String.valueOf(settings.getFollowers()));
+        mProgressBar.setVisibility(View.GONE);
+    }
+
 
     /**
      * Responsible for setting up the profile toolbar
      */
-    private void setupToolbar()
-    {
+    private void setupToolbar(){
+
         ((ProfileActivity)getActivity()).setSupportActionBar(toolbar);
 
-        profileMenu.setOnClickListener(new View.OnClickListener()
-        {
+        profileMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigating to account settings.");
-                Intent intent  = new Intent(mContext, AccountSettingsActivity.class);
+                Intent intent = new Intent(mContext, AccountSettingsActivity.class);
                 startActivity(intent);
             }
         });
@@ -101,8 +134,7 @@ public class ProfileFragment extends Fragment {
     /**
      * BottomNavigationView setup
      */
-    private void setupBottomNavigationView()
-    {
+    private void setupBottomNavigationView(){
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationView);
         BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationView);
@@ -111,8 +143,8 @@ public class ProfileFragment extends Fragment {
         menuItem.setChecked(true);
     }
 
-          /*
-    ---------------------------- Firebase --------------------------------------------
+      /*
+    ------------------------------------ Firebase ---------------------------------------------
      */
 
     /**
@@ -120,6 +152,7 @@ public class ProfileFragment extends Fragment {
      */
     private void setupFirebaseAuth(){
         Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
+
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -130,25 +163,27 @@ public class ProfileFragment extends Fragment {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
-                if(user != null) {
+                if (user != null) {
                     // User is signed in
-                    Log.d(TAG, "onAuthStateChanged: signed_in" + user.getUid());
-                }
-                else
-                {
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
                     // User is signed out
-                    Log.d(TAG, "onAuthStateChanged: signed_out");
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
                 // ...
             }
         };
 
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 //retrieve user information from the database
+                //setProfileWidgets(mFirebaseMethods.getUserSettings(dataSnapshot));
 
                 //retrieve images for the user in question
+
             }
 
             @Override
@@ -158,11 +193,11 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
-
     }
 
     @Override
