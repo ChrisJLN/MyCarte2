@@ -37,6 +37,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 
+import org.w3c.dom.Text;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
@@ -89,6 +91,19 @@ public class ProfileFragment extends Fragment {
         setupToolbar();
 
         setupFirebaseAuth();
+
+        TextView editProfile = (TextView) view.findViewById(R.id.textEditProfile);
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: navigating to " + mContext.getString(R.string.edit_profile_fragment));
+                Intent intent = new Intent(getActivity(), AccountSettingsActivity.class);
+                intent.putExtra(getString(R.string.calling_activity), getString(R.string.profile_activity));
+                startActivity(intent);
+            }
+        });
+
+
 
         return view;
     }
@@ -180,7 +195,7 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //retrieve user information from the database
-                //setProfileWidgets(mFirebaseMethods.getUserSettings(dataSnapshot));
+                setProfileWidgets(mFirebaseMethods.getUserSettings(dataSnapshot));
 
                 //retrieve images for the user in question
 

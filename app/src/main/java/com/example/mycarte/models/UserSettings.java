@@ -5,7 +5,7 @@ public class UserSettings {
     private User user;
     private UserAccountSettings settings;
 
-    public UserSettings(User user, UserAccountSettings settings){
+    public UserSettings(User user, UserAccountSettings settings) {
         this.user = user;
         this.settings = settings;
     }
@@ -13,6 +13,7 @@ public class UserSettings {
     public UserSettings() {
 
     }
+
 
     public User getUser() {
         return user;

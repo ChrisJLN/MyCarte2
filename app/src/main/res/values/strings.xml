@@ -8,6 +8,8 @@
     <string name="sign_out_fragment">Sign Out</string>
     <string name="profile_fragment">Profile</string>
 
+    <string name="confirm_password_dialog">ConfirmPasswordDialog</string>
+
     <!-- Firebase messages -->
     <string name="auth_failed">Failed to Authenticate</string>
     <string name="auth_sucess">Authentication Success</string>
@@ -15,4 +17,13 @@
     <!-- Firebase database fields -->
     <string name="dbname_users">users</string>
     <string name="dbname_user_account_settings">user_account_settings</string>
+    <string name="field_username">username</string>
+
+    <!-- Intent Extras -->
+    <string name="calling_activity">calling_activity</string>
+
+    <!-- Activity names -->
+    <string name="profile_activity">Profile Activity</string>
+
+
 </resources>

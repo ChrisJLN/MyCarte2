@@ -42,24 +42,36 @@ public class FirebaseMethods {
         }
     }
 
-    public boolean checkIfUsernameExists(String username, DataSnapshot datasnapshot){
-        Log.d(TAG, "checkIfUsernameExists: checking if " + username + " already exists.");
+    public void updateUsername(String username){
+        myRef.child(mContext.getString(R.string.dbname_users))
+                .child(userID)
+                .child(mContext.getString(R.string.field_username))
+                .setValue(username);
 
-        User user = new User();
-
-        for (DataSnapshot ds: datasnapshot.child(userID).getChildren()){
-            Log.d(TAG, "checkIfUsernameExists: datasnapshot: " + ds);
-
-            user.setUsername(ds.getValue(User.class).getUsername());
-            Log.d(TAG, "checkIfUsernameExists: username: " + user.getUsername());
-
-            if(StringManipulation.expandUsername(user.getUsername()).equals(username)){
-                Log.d(TAG, "checkIfUsernameExists: FOUND A MATCH: " + user.getUsername());
-                return true;
-            }
-        }
-        return false;
+        myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+                .child(userID)
+                .child(mContext.getString(R.string.field_username))
+                .setValue(username);
     }
+
+ //   public boolean checkIfUsernameExists(String username, DataSnapshot datasnapshot){
+ //       Log.d(TAG, "checkIfUsernameExists: checking if " + username + " already exists.");
+//
+  //      User user = new User();
+
+    //    for (DataSnapshot ds: datasnapshot.child(userID).getChildren()){
+      //      Log.d(TAG, "checkIfUsernameExists: datasnapshot: " + ds);
+
+        //    user.setUsername(ds.getValue(User.class).getUsername());
+          //  Log.d(TAG, "checkIfUsernameExists: username: " + user.getUsername());
+
+            //if(StringManipulation.expandUsername(user.getUsername()).equals(username)){
+              //  Log.d(TAG, "checkIfUsernameExists: FOUND A MATCH: " + user.getUsername());
+                //return true;
+            //}
+        //}
+        //return false;
+    //}
 
     /**
      * Register a new email and password to Firebase Authentication
@@ -155,7 +167,7 @@ public class FirebaseMethods {
      * @return
      */
     public UserSettings getUserSettings(DataSnapshot dataSnapshot){
-        Log.d(TAG, "getUserAccountSettings: retrieving user account settings from firebase.");
+        Log.d(TAG, "getUserAccountSettings: retrieving user account settings from firebase database.");
 
 
         UserAccountSettings settings  = new UserAccountSettings();
@@ -214,9 +226,11 @@ public class FirebaseMethods {
                 }catch (NullPointerException e){
                     Log.e(TAG, "getUserAccountSettings: NullPointerException: " + e.getMessage() );
                 }
+            }
 
 
-                // users node
+
+            // users node
                 if(ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
                     Log.d(TAG, "getUserAccountSettings: datasnapshot: " + ds);
 
@@ -244,7 +258,7 @@ public class FirebaseMethods {
                     Log.d(TAG, "getUserAccountSettings: retrieved users information: " + user.toString());
                 }
             }
-        }
+
         return new UserSettings(user, settings);
 
     }

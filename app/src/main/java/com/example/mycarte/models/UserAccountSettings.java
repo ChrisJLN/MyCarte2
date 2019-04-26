@@ -11,7 +11,8 @@ public class UserAccountSettings {
     private String username;
     private String website;
 
-    public UserAccountSettings(String description, String display_name, long followers, long following, long posts, String profile_photo, String username, String website) {
+    public UserAccountSettings(String description, String display_name, long followers, long following,
+                               long posts, String profile_photo, String username, String website) {
         this.description = description;
         this.display_name = display_name;
         this.followers = followers;
@@ -21,7 +22,6 @@ public class UserAccountSettings {
         this.username = username;
         this.website = website;
     }
-
     public UserAccountSettings() {
 
     }
@@ -89,6 +89,7 @@ public class UserAccountSettings {
     public void setWebsite(String website) {
         this.website = website;
     }
+
 
     @Override
     public String toString() {
