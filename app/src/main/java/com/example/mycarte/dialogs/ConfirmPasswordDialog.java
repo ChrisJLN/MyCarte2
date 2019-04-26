@@ -14,8 +14,6 @@ import android.widget.Toast;
 
 import com.example.mycarte.R;
 
-import org.w3c.dom.Text;
-
 public class ConfirmPasswordDialog extends DialogFragment {
 
     private static final String TAG = "ConfirmPasswordDialog";
@@ -24,29 +22,30 @@ public class ConfirmPasswordDialog extends DialogFragment {
         public void onConfirmPassword(String password);
     }
     OnConfirmPasswordListener mOnConfirmPasswordListener;
-
     TextView mPassword;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view  = inflater.inflate(R.layout.dialog_confirm_password, container, false);
+        View view = inflater.inflate(R.layout.dialog_confirm_password, container, false);
         mPassword = (TextView) view.findViewById(R.id.confirm_password);
+
 
         TextView confirmDialog = (TextView) view.findViewById(R.id.dialogConfirm);
         confirmDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String password = mPassword.getText().toString();
-                if (!password.equals("")){
-                mOnConfirmPasswordListener.onConfirmPassword(password);
-                getDialog().dismiss();
-            }
-            else{
-                    Toast.makeText(getActivity(), "enter a password", Toast.LENGTH_SHORT).show();
+                if(!password.equals("")){
+                    mOnConfirmPasswordListener.onConfirmPassword(password);
+                    getDialog().dismiss();
+                }else{
+                    Toast.makeText(getActivity(), "you must enter a password", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
-
 
         TextView cancelDialog = (TextView) view.findViewById(R.id.dialogCancel);
         cancelDialog.setOnClickListener(new View.OnClickListener() {
@@ -55,19 +54,21 @@ public class ConfirmPasswordDialog extends DialogFragment {
                 getDialog().dismiss();
             }
         });
+
+
         return view;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         try{
             mOnConfirmPasswordListener = (OnConfirmPasswordListener) getTargetFragment();
-        }catch(ClassCastException e){
+        }catch (ClassCastException e){
             Log.e(TAG, "onAttach: ClassCastException: " + e.getMessage() );
         }
     }
 }
+
 
 

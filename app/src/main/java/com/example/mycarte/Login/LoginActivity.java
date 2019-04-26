@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                                             }
                                             else{
                                                 Log.d(TAG, "signInWithEmail: successful login");
-                                                Toast.makeText(LoginActivity.this, getString(R.string.auth_sucess),
+                                                Toast.makeText(LoginActivity.this, getString(R.string.auth_success),
                                                         Toast.LENGTH_SHORT).show();
                                                 mProgressBar.setVisibility(View.GONE);
                                                 mPleaseWait.setVisibility(View.GONE);
