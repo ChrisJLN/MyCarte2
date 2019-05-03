@@ -4,6 +4,9 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+
+import com.example.mycarte.R;
+import com.example.mycarte.UserInformation;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -18,28 +21,23 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,LocationListener,GoogleMap.OnMarkerClickListener{
+import com.google.firebase.database.ValueEventListener;public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,LocationListener,GoogleMap.OnMarkerClickListener{
     private GoogleMap mMap;
     private ChildEventListener mChildEventListener;
     private DatabaseReference mUsers;
-    private String photo_id;
     Marker marker;
     @Override
-
-
     protected void onCreate(Bundle savedInstanceState) {
         FirebaseApp.initializeApp(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+// Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         ChildEventListener mChildEventListener;
 
-
-        mUsers= FirebaseDatabase.getInstance().getReference("photo_id");
+        mUsers= FirebaseDatabase.getInstance().getReference("Users");
         mUsers.push().setValue(marker);
     }
 
@@ -89,9 +87,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean onMarkerClick(Marker marker) {
         return false;
-    }
-    //@Override
-    public String getPhoto_id(){
-        return photo_id;
     }
 }

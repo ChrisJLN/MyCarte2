@@ -42,7 +42,7 @@ public class LikesActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_likes);
         btnproceed=(Button)findViewById(R.id.btnproceed);
-        mDatabase= FirebaseDatabase.getInstance().getReference().child("photos");
+        mDatabase= FirebaseDatabase.getInstance().getReference().child("Users");
         editTextName=(EditText)findViewById(R.id.editTextName);
         editTextLatitude=(EditText)findViewById(R.id.editTextLatitude);
         editTextLongitude=(EditText)findViewById(R.id.editTextLongitude);
@@ -61,7 +61,7 @@ public class LikesActivity extends AppCompatActivity implements View.OnClickList
         double latitude= Double.parseDouble(editTextLatitude.getText().toString().trim());
         double longitude= Double.parseDouble(editTextLongitude.getText().toString().trim());
         UserInformation userInformation=new UserInformation(name,latitude,longitude);
-        mDatabase.child("photos").setValue(userInformation);
+        mDatabase.child("Users").setValue(userInformation);
         Toast.makeText(this,"Saved",Toast.LENGTH_LONG).show();
     }
     @Override
