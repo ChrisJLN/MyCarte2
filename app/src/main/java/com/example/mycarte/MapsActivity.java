@@ -37,7 +37,7 @@ import com.google.firebase.database.ValueEventListener;public class MapsActivity
         mapFragment.getMapAsync(this);
         ChildEventListener mChildEventListener;
 
-        mUsers= FirebaseDatabase.getInstance().getReference("Users");
+        mUsers= FirebaseDatabase.getInstance().getReference("users");
         mUsers.push().setValue(marker);
     }
 

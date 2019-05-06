@@ -8,7 +8,7 @@ import android.content.Context;
 import android.view.MenuItem;
 
 import com.example.mycarte.Home.HomePageActivity;
-import com.example.mycarte.Likes.LikesActivity;
+import com.example.mycarte.Likes.MapMarkerActivity;
 import com.example.mycarte.Profile.ProfileActivity;
 import com.example.mycarte.R;
 import com.example.mycarte.Search.SearchActivity;
@@ -55,7 +55,7 @@ public class BottomNavigationViewHelper
                         break;
                     case R.id.ic_alert:
                         //ACTIVITY_NUM = 3
-                        Intent intent5 = new Intent(context, LikesActivity.class);
+                        Intent intent5 = new Intent(context, MapMarkerActivity.class);
                         context.startActivity(intent5);
                         break;
                     case R.id.ic_android:

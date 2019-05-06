@@ -3,15 +3,8 @@ package com.example.mycarte.Likes;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,16 +12,14 @@ import android.widget.Toast;
 import com.example.mycarte.MapsActivity;
 import com.example.mycarte.R;
 import com.example.mycarte.UserInformation;
-import com.example.mycarte.Utils.BottomNavigationViewHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-public class LikesActivity extends AppCompatActivity implements View.OnClickListener
+public class MapMarkerActivity extends AppCompatActivity implements View.OnClickListener
 {
-    private static final String TAG = "LikesActivity";
+    private static final String TAG = "MapMarkerActivity";
     private static final int ACTIVITY_NUM = 3;
-    private Context mContext = LikesActivity.this;
+    private Context mContext = MapMarkerActivity.this;
     private DatabaseReference mDatabase;
     private Button btnsave;
     private Button btnproceed;
@@ -42,7 +33,7 @@ public class LikesActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_likes);
         btnproceed=(Button)findViewById(R.id.btnproceed);
-        mDatabase= FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabase= FirebaseDatabase.getInstance().getReference().child("users");
         editTextName=(EditText)findViewById(R.id.editTextName);
         editTextLatitude=(EditText)findViewById(R.id.editTextLatitude);
         editTextLongitude=(EditText)findViewById(R.id.editTextLongitude);
@@ -51,7 +42,7 @@ public class LikesActivity extends AppCompatActivity implements View.OnClickList
         btnproceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(LikesActivity.this, MapsActivity.class);
+                Intent i=new Intent(MapMarkerActivity.this, MapsActivity.class);
                 startActivity(i);
             }
         });
@@ -61,7 +52,7 @@ public class LikesActivity extends AppCompatActivity implements View.OnClickList
         double latitude= Double.parseDouble(editTextLatitude.getText().toString().trim());
         double longitude= Double.parseDouble(editTextLongitude.getText().toString().trim());
         UserInformation userInformation=new UserInformation(name,latitude,longitude);
-        mDatabase.child("Users").setValue(userInformation);
+        mDatabase.child("users").setValue(userInformation);
         Toast.makeText(this,"Saved",Toast.LENGTH_LONG).show();
     }
     @Override
