@@ -8,7 +8,7 @@ import android.content.Context;
 import android.view.MenuItem;
 
 import com.example.mycarte.Home.HomePageActivity;
-import com.example.mycarte.Likes.MapMarkerActivity;
+import com.example.mycarte.Maptwo.MapMarkerActivity;
 import com.example.mycarte.Profile.ProfileActivity;
 import com.example.mycarte.R;
 import com.example.mycarte.Search.SearchActivity;

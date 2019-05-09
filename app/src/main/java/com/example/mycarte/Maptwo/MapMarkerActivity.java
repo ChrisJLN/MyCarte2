@@ -1,4 +1,4 @@
-package com.example.mycarte.Likes;
+package com.example.mycarte.Maptwo;
 
 import android.content.Context;
 import android.content.Intent;

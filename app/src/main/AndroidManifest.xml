@@ -3,6 +3,9 @@
     package="com.example.mycarte">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -41,7 +44,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Likes.MapMarkerActivity"> </activity>
+        <activity android:name=".Maptwo.MapMarkerActivity"> </activity>
         <activity android:name=".Profile.ProfileActivity"> </activity>
         <activity android:name=".Share.ShareActivity"> </activity>
         <activity android:name=".Search.SearchActivity"> </activity>
